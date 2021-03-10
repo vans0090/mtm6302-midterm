@@ -45,3 +45,51 @@ const stories = [
       }
     }
   ]
+
+  const $form = document.getElementById('form')
+  const $buttons = document.getElementById('buttons')
+
+    $buttons.addEventListener('submit', function (event) {
+    event.preventDefault()
+    })
+
+ const $story1 = document.getElementById('mission-statement')
+ $story1.addEventListener('click', displayStory1);
+
+let storyWords = []
+
+function displayStory1() {
+        for (const word of stories[0].words) {
+            storyWords.push(`<input type="text" name="${word}" placeholder="${word}">`)
+        }
+            storyWords.push(`<button type="submit">Create Story</button>`)
+        $form.innerHTML = storyWords.join('')
+
+        console.log(storyWords)
+}
+
+const $result = document.getElementById('result')
+
+$form.addEventListener('submit', function (e) {
+  e.preventDefault()
+  
+  const story = stories[0]
+  const result = []
+  
+  for (const element of $form.elements) {
+      // result.push(`${element.name}: ${element.value}`)
+      story.words = element.value
+  }
+
+  story.output(result)
+  
+}) 
+
+
+
+// displayStory1()
+
+
+
+
+
