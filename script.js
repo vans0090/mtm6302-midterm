@@ -77,15 +77,20 @@ $form.addEventListener('submit', function (e) {
   const result = []
   
   for (const element of $form.elements) {
-      // result.push(`${element.name}: ${element.value}`)
-      story.words = element.value
+    if (element.name) {
+      result.push(`${element.name}: ${element.value}`)
+    }
   }
-
-  story.output(result)
   
+  $result.innerHTML = result.join('<br>')
+  story.output(result)
 }) 
 
 
+
+// let key = document.getElementById(stories[options].words[i])
+//     inputFields[stories[options].words[i]] = key.value
+//   }
 
 // displayStory1()
 
