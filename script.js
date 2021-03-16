@@ -48,51 +48,66 @@ const stories = [
 
   const $form = document.getElementById('form')
   const $buttons = document.getElementById('buttons')
+  
+  const $button = document.querySelectorAll('.button')
+  console.log($button.textContent)
+
 
     $buttons.addEventListener('submit', function (event) {
     event.preventDefault()
     })
 
- const $story1 = document.getElementById('mission-statement')
- $story1.addEventListener('click', displayStory1);
-
 let storyWords = []
 
-function displayStory1() {
-        for (const word of stories[0].words) {
-            storyWords.push(`<input type="text" name="${word}" placeholder="${word}">`)
-        }
-            storyWords.push(`<button type="submit">Create Story</button>`)
-        $form.innerHTML = storyWords.join('')
+$buttons.addEventListener('click', function(event){
+  for (const word of stories[$button.dataset.options].words) {
+                storyWords.push(`<input type="text" name="${word}" placeholder="${word}">`)
+            }
+                storyWords.push(`<button type="submit">Create Story</button>`)
+            $form.innerHTML = storyWords.join('')
+    
+            console.log(storyWords)      
+    
+    })
 
-        console.log(storyWords)
-}
+// const $result = document.getElementById('result')
 
-const $result = document.getElementById('result')
-
-$form.addEventListener('submit', function (e) {
-  e.preventDefault()
+// $form.addEventListener('submit', function (event) {
+//   event.preventDefault()
   
-  const story = stories[0]
-  const result = []
-  
-  for (const element of $form.elements) {
-    if (element.name) {
-      result.push(`${element.name}: ${element.value}`)
-    }
-  }
-  
-  $result.innerHTML = result.join('<br>')
-  story.output(result)
-}) 
-
-
-
-// let key = document.getElementById(stories[options].words[i])
-//     inputFields[stories[options].words[i]] = key.value
+//   for (const element of $form.elements) {
+//     if (element.name) {
+//       stories[$button.dataset.options].words = element.value
+//     }
 //   }
+  
+//   $result.innerHTML = story.output(stories[$button.dataset.options].words)
+// }) 
 
-// displayStory1()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // let key = document.getElementById(stories[options].words[i])
+// //     inputFields[stories[options].words[i]] = key.value
+// //   }
+
+// // displayStory1()
 
 
 
