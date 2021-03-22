@@ -46,13 +46,16 @@ const stories = [
     }
   ]
 
+  // declaring variables
   const $form = document.getElementById('form')
   const $buttons = document.getElementById('buttons')
+  const $formContainer = document.getElementById('form-container')
+  const $button1 = document.getElementById('0')
+  const $result = document.getElementById('result')
+  const $inputValue = document.querySelectorAll('inputValue')
+
   
-  const $button = document.querySelectorAll('.button')
-  console.log($button.textContent)
-
-
+  
     $buttons.addEventListener('submit', function (event) {
     event.preventDefault()
     })
@@ -60,56 +63,44 @@ const stories = [
 let storyWords = []
 
 $buttons.addEventListener('click', function(event){
-  for (const word of stories[$button.dataset.options].words) {
-                storyWords.push(`<input type="text" name="${word}" placeholder="${word}">`)
+  storyWords.push(`<form id='form'>`)
+  for (const word of stories[event.target.dataset.options].words) {
+                storyWords.push(`<input type="text" name="${word}" placeholder="${word}" id='inputValue'>`)
             }
                 storyWords.push(`<button type="submit">Create Story</button>`)
-            $form.innerHTML = storyWords.join('')
-    
-            console.log(storyWords)      
+                storyWords.push(`</form>`)
+            $formContainer.innerHTML = storyWords.join('')
+         
     
     })
 
-// const $result = document.getElementById('result')
 
-// $form.addEventListener('submit', function (event) {
-//   event.preventDefault()
-  
-//   for (const element of $form.elements) {
-//     if (element.name) {
-//       stories[$button.dataset.options].words = element.value
-//     }
-//   }
-  
-//   $result.innerHTML = story.output(stories[$button.dataset.options].words)
-// }) 
+    
+    $formContainer.addEventListener('submit', function (event) {
+      event.preventDefault()
 
+      $result.textContent = displayStory ()
 
+    })
 
+      
+    function displayStory() {
+      
+      const story = stories[0]
+      let wordType = stories[0].words
 
+      wordType = document.getElementById('inputValue').value
 
+      
 
+      const completeStory = story.output(wordType)
 
+      console.log(completeStory)
 
-
-
-
-
-
-
+      return completeStory
+    }
 
 
 
 
-
-
-// // let key = document.getElementById(stories[options].words[i])
-// //     inputFields[stories[options].words[i]] = key.value
-// //   }
-
-// // displayStory1()
-
-
-
-
-
+    
