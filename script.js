@@ -47,7 +47,7 @@ const stories = [
   ]
 
   // declaring variables
-  const $form = document.getElementById('form')
+  
   const $buttons = document.getElementById('buttons')
   const $formContainer = document.getElementById('form-container')
   const $button1 = document.getElementById('0')
@@ -63,14 +63,16 @@ const stories = [
 let storyWords = []
 
 $buttons.addEventListener('click', function(event){
-  storyWords.push(`<form id='form'>`)
+  storyWords.push(` <form id='form'>
+                    <h2>Enter the words:</h2>`)
   for (const word of stories[event.target.dataset.options].words) {
-                storyWords.push(`<input type="text" name="${word}" placeholder="${word}" id='inputValue'>`)
+                storyWords.push(`<input type="text" name="${word}" placeholder="${word}" class='formstyle'>`)
             }
                 storyWords.push(`<button type="submit">Create Story</button>`)
                 storyWords.push(`</form>`)
             $formContainer.innerHTML = storyWords.join('')
-         
+
+         $buttons.style.visibility = "hidden"
     
     })
 
@@ -79,26 +81,33 @@ $buttons.addEventListener('click', function(event){
     $formContainer.addEventListener('submit', function (event) {
       event.preventDefault()
 
-      $result.textContent = displayStory ()
+      const $form = document.getElementById('form')
+      
+      const $storyObject = {}
 
+      for (const readStory of $form.elements) {
+        if (readStory.name) {
+
+          $storyObject[readStory.name] = readStory.value
+          
+          console.log(readStory.name, readStory.value)
+         
+        }
+      }
+      
+      $result.innerHTML = stories[0].output($storyObject)
+      const newButton = `<button id= "newStory" type="submit">Build New Story</button>`
+
+      $result.innerHTML = $result.innerHTML + newButton
+
+      $result.addEventListener('click', function(){
+        $result.style.visibility = "hidden"
+        $form.style.visibility = "hidden"
+
+        $buttons.style.visibility = "visible"
+      })
     })
-
       
-    function displayStory() {
-      
-      const story = stories[0]
-      let wordType = stories[0].words
-
-      wordType = document.getElementById('inputValue').value
-
-      
-
-      const completeStory = story.output(wordType)
-
-      console.log(completeStory)
-
-      return completeStory
-    }
 
 
 
