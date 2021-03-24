@@ -68,7 +68,7 @@ $buttons.addEventListener('click', function(event){
   for (const word of stories[event.target.dataset.options].words) {
                 storyWords.push(`<input type="text" name="${word}" placeholder="${word}" class='formstyle'>`)
             }
-                storyWords.push(`<button type="submit">Create Story</button>`)
+                storyWords.push(`<button type="submit" class="button form-button">Create Story</button>`)
                 storyWords.push(`</form>`)
             $formContainer.innerHTML = storyWords.join('')
 
@@ -91,18 +91,19 @@ $buttons.addEventListener('click', function(event){
           $storyObject[readStory.name] = readStory.value
           
           console.log(readStory.name, readStory.value)
+          $form.remove()
          
         }
       }
       
       $result.innerHTML = stories[0].output($storyObject)
-      const newButton = `<button id= "newStory" type="submit">Build New Story</button>`
+      const newButton = `<button id= "newStory" class=" button form-button" type="submit">Build New Story</button>`
 
       $result.innerHTML = $result.innerHTML + newButton
 
       $result.addEventListener('click', function(){
         $result.style.visibility = "hidden"
-        $form.style.visibility = "hidden"
+        // $form.style.visibility = "hidden"
 
         $buttons.style.visibility = "visible"
       })
