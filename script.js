@@ -60,7 +60,7 @@ const stories = [
     })
 
 let storyWords = []
-let storySelected
+let storySelected 
 
 $buttons.addEventListener('click', function(event){
   storyWords.push(` <form id='form'>
@@ -93,21 +93,25 @@ $buttons.addEventListener('click', function(event){
           
           console.log(readStory.name, readStory.value)
           $form.remove()
-         
+          
         }
+        $result.style.visibility = "visible"
       }
       
       $result.innerHTML = storySelected.output($storyObject)
       const newButton = `<button id= "newStory" class=" button form-button" type="submit">Build New Story</button>`
 
       $result.innerHTML = $result.innerHTML + newButton
+       
 
       $result.addEventListener('click', function(){
-        $result.remove()
-
+       $result.style.visibility = "hidden"
+        storyWords = []
         $buttons.style.visibility = "visible"
+        
       })
     })
+   
       
 
 
