@@ -50,7 +50,6 @@ const stories = [
   
   const $buttons = document.getElementById('buttons')
   const $formContainer = document.getElementById('form-container')
-  const $button1 = document.getElementById('0')
   const $result = document.getElementById('result')
   const $inputValue = document.querySelectorAll('inputValue')
 
