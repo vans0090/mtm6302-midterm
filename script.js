@@ -61,11 +61,13 @@ const stories = [
     })
 
 let storyWords = []
+let storySelected
 
 $buttons.addEventListener('click', function(event){
   storyWords.push(` <form id='form'>
                     <h2>Enter the words:</h2>`)
-  for (const word of stories[event.target.dataset.options].words) {
+                    storySelected = stories[event.target.dataset.options]
+  for (const word of storySelected.words) {
                 storyWords.push(`<input type="text" name="${word}" placeholder="${word}" class='formstyle'>`)
             }
                 storyWords.push(`<button type="submit" class="button form-button">Create Story</button>`)
@@ -96,14 +98,13 @@ $buttons.addEventListener('click', function(event){
         }
       }
       
-      $result.innerHTML = stories[0].output($storyObject)
+      $result.innerHTML = storySelected.output($storyObject)
       const newButton = `<button id= "newStory" class=" button form-button" type="submit">Build New Story</button>`
 
       $result.innerHTML = $result.innerHTML + newButton
 
       $result.addEventListener('click', function(){
-        $result.style.visibility = "hidden"
-        // $form.style.visibility = "hidden"
+        $result.remove()
 
         $buttons.style.visibility = "visible"
       })
