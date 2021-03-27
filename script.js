@@ -91,15 +91,17 @@ $buttons.addEventListener('click', function(event){
 
           $storyObject[readStory.name] = readStory.value
           
-          console.log(readStory.name, readStory.value)
+          // console.log(readStory.name, readStory.value)
           $form.remove()
           
         }
         $result.style.visibility = "visible"
       }
-      
+    
+
       $result.innerHTML = storySelected.output($storyObject)
       const newButton = `<button id= "newStory" class=" button form-button" type="submit">Build New Story</button>`
+
 
       $result.innerHTML = $result.innerHTML + newButton
        
